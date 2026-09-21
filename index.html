@@ -5,38 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Worm Game</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#10131a;color:#fff;font-family:Arial,sans-serif;display:flex;justify-content:center;min-height:100vh}
-.app{width:min(94vw,480px);padding:20px}.screen{background:#191e28;border:1px solid #303746;border-radius:24px;padding:24px;text-align:center;box-shadow:0 12px 35px #0008}
-h1{font-size:42px;margin:10px 0}.sub{color:#aeb6c5;margin-bottom:22px}
-button{border:0;border-radius:14px;padding:14px 22px;margin:6px;font-size:17px;font-weight:bold;cursor:pointer;background:#75e06f;color:#111}
-button.secondary{background:#303746;color:#fff}.hidden{display:none!important}.hud{display:flex;justify-content:space-between;margin-bottom:12px;font-weight:bold}
-canvas{width:100%;max-width:420px;aspect-ratio:1;background:#0b0e13;border-radius:16px;border:2px solid #303746}
-.controls{display:grid;grid-template-columns:repeat(3,62px);justify-content:center;gap:6px;margin:14px 0}.controls button{width:62px;height:52px;padding:0}.empty{visibility:hidden}
-.panel{margin-top:14px;padding:18px;border:1px solid #394150;border-radius:18px;text-align:left}.panel label{display:block;margin:12px 0}.panel input{width:100%}
-.overlay{position:fixed;inset:0;background:#0009;display:flex;align-items:center;justify-content:center;padding:20px;z-index:5}
-.modal{width:min(90vw,390px);background:#191e28;border:1px solid #394150;border-radius:24px;padding:28px;text-align:center}.modal h2{font-size:36px;margin:5px 0 12px}.scorebig{font-size:22px;margin-bottom:12px}
+*{box-sizing:border-box}body{margin:0;background:#10131a;color:#fff;font-family:Arial,sans-serif;display:flex;justify-content:center;min-height:100vh}.app{width:min(94vw,480px);padding:20px}.screen{background:#191e28;border:1px solid #303746;border-radius:24px;padding:24px;text-align:center;box-shadow:0 12px 35px #0008}h1{font-size:42px;margin:10px 0}.sub{color:#aeb6c5;margin-bottom:22px}button{border:0;border-radius:14px;padding:14px 22px;margin:6px;font-size:17px;font-weight:bold;cursor:pointer;background:#75e06f;color:#111}button.secondary{background:#303746;color:#fff}.hidden{display:none!important}.hud{display:flex;justify-content:space-between;margin-bottom:12px;font-weight:bold}canvas{width:100%;max-width:420px;aspect-ratio:1;background:#0b0e13;border-radius:16px;border:2px solid #303746}.controls{display:grid;grid-template-columns:repeat(3,62px);justify-content:center;gap:6px;margin:14px 0}.controls button{width:62px;height:52px;padding:0}.empty{visibility:hidden}.panel{margin-top:14px;padding:18px;border:1px solid #394150;border-radius:18px;text-align:left}.panel label{display:block;margin:12px 0}.panel input{width:100%}.overlay{position:fixed;inset:0;background:#0009;display:flex;align-items:center;justify-content:center;padding:20px;z-index:5}.modal{width:min(90vw,390px);background:#191e28;border:1px solid #394150;border-radius:24px;padding:28px;text-align:center}.modal h2{font-size:36px;margin:5px 0 12px}.scorebig{font-size:22px;margin-bottom:12px}
 </style>
 </head>
 <body>
-<div class="app">
-<section id="menu" class="screen">
-<h1>🐍 WORM GAME</h1>
-<div class="sub">กินอาหาร • เพิ่มคะแนน • อย่าชนตัวเองหรือขอบสนาม</div>
-<button id="start">▶ START</button>
-<button id="settingsBtn" class="secondary">⚙ SETTINGS</button>
-<div id="settings" class="panel hidden"><strong>ตั้งค่าเกม</strong>
-<label>ความเร็ว: <input id="speed" type="range" min="70" max="250" value="140"></label>
-<button id="closeSettings" class="secondary">ปิด</button></div>
-</section>
-<section id="game" class="screen hidden">
-<div class="hud"><span>คะแนน: <b id="score">0</b></span><span id="status">กำลังเล่น</span></div>
-<canvas id="board" width="420" height="420"></canvas>
-<div class="controls"><button class="empty"></button><button data-dir="up">▲</button><button class="empty"></button><button data-dir="left">◀</button><button data-dir="down">▼</button><button data-dir="right">▶</button></div>
-<button id="back" class="secondary">หน้าหลัก</button>
-</section></div>
-<div id="gameOver" class="overlay hidden"><div class="modal"><h2>GAME OVER</h2><div class="scorebig">คะแนนของคุณ: <b id="finalScore">0</b></div><button id="again">🔄 เล่นอีกครั้ง</button><button id="home" class="secondary">⌂ กลับหน้าหลัก</button></div></div>
+<div class="app"><section id="menu" class="screen"><h1>🐍 WORM GAME</h1><div class="sub">กินอาหาร • เพิ่มคะแนน • อย่าชนตัวเองหรือขอบสนาม</div><button id="start">▶ START</button><button id="settingsBtn" class="secondary">⚙ SETTINGS</button><div id="settings" class="panel hidden"><strong>ตั้งค่าเกม</strong><label>ความเร็ว: <input id="speed" type="range" min="70" max="250" value="140"></label><button id="closeSettings" class="secondary">ปิด</button></div></section><section id="game" class="screen hidden"><div class="hud"><span>คะแนน: <b id="score">0</b></span><span id="status">กำลังเล่น</span></div><canvas id="board" width="420" height="420"></canvas><div class="controls"><button class="empty"></button><button data-dir="up">▲</button><button class="empty"></button><button data-dir="left">◀</button><button data-dir="down">▼</button><button data-dir="right">▶</button></div><button id="back" class="secondary">หน้าหลัก</button></section></div><div id="gameOver" class="overlay hidden"><div class="modal"><h2>GAME OVER</h2><div class="scorebig">คะแนนของคุณ: <b id="finalScore">0</b></div><button id="again">🔄 เล่นอีกครั้ง</button><button id="home" class="secondary">⌂ กลับหน้าหลัก</button></div></div>
 <script>
-const menu=document.getElementById('menu'),game=document.getElementById('game'),canvas=document.getElementById('board');const ctx=canvas.getContext('2d'),scoreEl=document.getElementById('score'),statusEl=document.getElementById('status');const over=document.getElementById('gameOver'),finalScore=document.getElementById('finalScore');let snake,food,dir,nextDir,score,timer=null,cell=21;
+const menu=document.getElementById('menu'),game=document.getElementById('game'),canvas=document.getElementById('board'),ctx=canvas.getContext('2d'),scoreEl=document.getElementById('score'),statusEl=document.getElementById('status'),over=document.getElementById('gameOver'),finalScore=document.getElementById('finalScore');let snake,food,dir,nextDir,score,timer=null,cell=21;
 function reset(){snake=[{x:10,y:10},{x:9,y:10},{x:8,y:10}];dir={x:1,y:0};nextDir={x:1,y:0};score=0;scoreEl.textContent=0;statusEl.textContent='กำลังเล่น';placeFood();draw()}
 function placeFood(){do{food={x:Math.floor(Math.random()*20),y:Math.floor(Math.random()*20)}}while(snake.some(p=>p.x===food.x&&p.y===food.y))}
 function draw(){ctx.clearRect(0,0,420,420);ctx.strokeStyle='#202632';for(let i=0;i<20;i++){ctx.beginPath();ctx.moveTo(i*cell,0);ctx.lineTo(i*cell,420);ctx.stroke();ctx.beginPath();ctx.moveTo(0,i*cell);ctx.lineTo(420,i*cell);ctx.stroke()}ctx.fillStyle='#f05b5b';ctx.beginPath();ctx.arc(food.x*cell+10.5,food.y*cell+10.5,8,0,Math.PI*2);ctx.fill();snake.forEach((p,i)=>{ctx.fillStyle=i===0?'#9cff70':'#55c957';ctx.fillRect(p.x*cell+2,p.y*cell+2,17,17)})}
@@ -45,6 +20,4 @@ function endGame(){clearInterval(timer);timer=null;statusEl.textContent='จบ�
 function startGame(){over.classList.add('hidden');menu.classList.add('hidden');game.classList.remove('hidden');reset();clearInterval(timer);timer=setInterval(step,Number(document.getElementById('speed').value))}
 function setDir(name){const d={up:{x:0,y:-1},down:{x:0,y:1},left:{x:-1,y:0},right:{x:1,y:0}}[name];if(d&&!(d.x===-dir.x&&d.y===-dir.y))nextDir=d}
 document.getElementById('start').onclick=startGame;document.getElementById('again').onclick=startGame;document.getElementById('home').onclick=()=>{clearInterval(timer);timer=null;over.classList.add('hidden');game.classList.add('hidden');menu.classList.remove('hidden')};document.getElementById('back').onclick=()=>{clearInterval(timer);timer=null;game.classList.add('hidden');menu.classList.remove('hidden')};document.getElementById('settingsBtn').onclick=()=>document.getElementById('settings').classList.remove('hidden');document.getElementById('closeSettings').onclick=()=>document.getElementById('settings').classList.add('hidden');document.querySelectorAll('[data-dir]').forEach(b=>b.onclick=()=>setDir(b.dataset.dir));document.addEventListener('keydown',e=>{const k={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right'}[e.key];if(k&&!game.classList.contains('hidden')){e.preventDefault();setDir(k)}})
-</script>
-</body>
-</html>
+</script></body></html>
